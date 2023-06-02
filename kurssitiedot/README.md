@@ -1,2 +1,2 @@
 # FullStackOpen-1
-Kansiot 'harj11' ja 'harj12' sisältävät App.js ja index.js tiedostot, jotka liittyvät harjoituksiin 1.1 ja 1.2, vastaavasti.
+Sisältää vain harjoitussarjan viimeisen tehtävän 1.2 (perustuu tehtävään 1.1, jota ei puskettu repoon erikseen).  
