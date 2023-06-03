@@ -3,17 +3,29 @@ import { useState } from 'react'
   // statistiikkaan liittyvä komponentti:
   const Statistics = (props) => 
   {
-    return ( 
+    
+    if (props.total > 0) {
+      return ( 
+        <div>
+          <h1>statistics</h1>
+          <p>good {props.good}</p>
+          <p>neutral {props.neutral}</p>
+          <p>bad {props.bad}</p>
+          <p>all {props.total}</p>
+          <p>average {(props.good - props.bad) / props.total}</p>
+          <p>positive {(props.good / props.total)*100} %</p>    
+        </div>
+      )
+    }
+    else {
+      return(
       <div>
         <h1>statistics</h1>
-        <p>good {props.good}</p>
-        <p>neutral {props.neutral}</p>
-        <p>bad {props.bad}</p>
-        <p>all {props.total}</p>
-        <p>average {(props.good - props.bad) / props.total}</p>
-        <p>positive {(props.good / props.total)*100} %</p>    
+        <p>No feedback given</p>
       </div>
-    )
+      )
+
+    }
   }
 
 function App() {
@@ -59,6 +71,7 @@ function App() {
       <Button
         handleClick={increaseBad}
         text='bad' />
+
       <Statistics good= {good} neutral= {neutral} bad= {bad} total= {total} />
     </div>
   )
