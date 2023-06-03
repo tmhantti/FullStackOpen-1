@@ -28,6 +28,55 @@ import { useState } from 'react'
     }
   }
 
+    // statistiikka taulukkona
+    const StatisticsTable = (props) => 
+    {
+      if (props.total > 0) {
+        return ( 
+          <div>
+            <h1>statistics (as table)</h1>
+            <table>
+            <tbody>
+            <tr>
+              <td>good</td> 
+              <td>{props.good}</td>              
+            </tr>
+            <tr>
+              <td>neutral</td>
+              <td>{props.neutral}</td>
+            </tr> 
+            <tr>
+              <td>bad</td>
+              <td>{props.bad}</td>
+            </tr> 
+            <tr>
+              <td>all</td>
+              <td>{props.total}</td>
+            </tr> 
+            <tr>
+              <td>average</td>
+              <td>{ ((props.good - props.bad) / props.total).toFixed(2)} </td>
+            </tr> 
+            <tr>
+              <td>positive</td>
+              <td>{((props.good / props.total)*100).toFixed(2) + ' %'} </td>
+            </tr> 
+            </tbody>
+            </table>            
+          </div>
+        )
+      }
+      else {
+        return(
+        <div>
+          <h1>statistics</h1>
+          <p>No feedback given</p>
+        </div>
+        )
+  
+      }
+    }
+  
 
   const StatisticLine = props => {
     return(
@@ -81,6 +130,7 @@ function App() {
         text='bad' />
 
       <Statistics good= {good} neutral= {neutral} bad= {bad} total= {total} />
+      <StatisticsTable good= {good} neutral= {neutral} bad= {bad} total= {total} />
     </div>
   )
 }
