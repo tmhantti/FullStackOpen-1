@@ -1,2 +1,1 @@
-# FullStackOpen-1
-Sisältää vain harjoitussarjan viimeisen tehtävän 1.2 (perustuu tehtävään 1.1, jota ei puskettu repoon erikseen).  
+Sisältää vain harjoitussarjan viimeisen tehtävän 1.5 (tehtävien 1.2-1.4 palautukset on tehty erillisinä committeina).  
