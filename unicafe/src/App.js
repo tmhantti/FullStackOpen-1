@@ -1,6 +1,22 @@
 import { useState } from 'react'
 
-const App = () => {
+  // statistiikkaan liittyvä komponentti:
+  const Statistics = (props) => 
+  {
+    return ( 
+      <div>
+        <h1>statistics</h1>
+        <p>good {props.good}</p>
+        <p>neutral {props.neutral}</p>
+        <p>bad {props.bad}</p>
+        <p>all {props.total}</p>
+        <p>average {(props.good - props.bad) / props.total}</p>
+        <p>positive {(props.good / props.total)*100} %</p>    
+      </div>
+    )
+  }
+
+function App() {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -26,36 +42,24 @@ const App = () => {
     setTotal(good + newNeutral + bad)
   }
   const increaseBad = () => {
-    const newBad= bad + 1
+    const newBad = bad + 1
     setBad(newBad)
     setTotal(good + neutral + newBad)
   }
 
-  // statistiikkaan liittyvät funktiot:
-
-
   return (
     <div>
       <h1>give feedback</h1>
-      <Button 
-        handleClick = {increaseGood} 
-        text= 'good'
-      />
-      <Button 
-        handleClick = {increaseNeutral} 
-        text= 'neutral'        
-      />
-      <Button 
-        handleClick = {increaseBad} 
-        text= 'bad'
-      />
-      <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {total}</p>
-      <p>average {(good - bad)/total}</p>
-      <p>positive {(good/total)*100} %</p>
+      <Button
+        handleClick={increaseGood}
+        text='good' />
+      <Button
+        handleClick={increaseNeutral}
+        text='neutral' />
+      <Button
+        handleClick={increaseBad}
+        text='bad' />
+      <Statistics good= {good} neutral= {neutral} bad= {bad} total= {total} />
     </div>
   )
 }
