@@ -21,22 +21,32 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-
-    // valitse satunnainen anekdootti
+  // annettujen äänien tila:
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
+  
+  // valitse satunnainen anekdootti
   const chooseRandom = () => {
     const rdn = Math.floor(Math.random() * anecdotes.length);
     setSelected(rdn)
   }
-
+  // lisää ääni anekdootille:
+  const giveVote = () => {
+    const copy= [...votes]
+    copy[selected]+= 1
+    setVotes(copy)
+  }
   
-
   return (
     <div>
-      {anecdotes[selected]}
-      <br/>
+      <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
+      <Button
+        handleClick={giveVote}
+        text='vote' /> 
       <Button
         handleClick={chooseRandom}
         text='next anecdote' />
+ 
     </div>
   )
 }
