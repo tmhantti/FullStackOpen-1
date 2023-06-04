@@ -23,21 +23,36 @@ const App = () => {
   const [selected, setSelected] = useState(0)
   // annettujen äänien tila:
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
-  
+
   // valitse satunnainen anekdootti
   const chooseRandom = () => {
     const rdn = Math.floor(Math.random() * anecdotes.length);
     setSelected(rdn)
   }
+  
+  // poimi anekdootti (sen indeksi listasta), joka on saanut eniten ääniä: 
+  function getMostVotedAnecdote(votesGiven) {
+    let maxVotes = 0
+    let idx= 0 
+    for (let i=0; i<votesGiven.length; i++) {
+      if (votes[i] > maxVotes) {
+        idx= i
+        maxVotes= votes[i]
+      }
+    }
+    return idx
+  }
+  
   // lisää ääni anekdootille:
   const giveVote = () => {
-    const copy= [...votes]
+    let copy= [...votes]
     copy[selected]+= 1
-    setVotes(copy)
+    setVotes(copy) 
   }
   
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <Button
@@ -46,7 +61,8 @@ const App = () => {
       <Button
         handleClick={chooseRandom}
         text='next anecdote' />
- 
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[getMostVotedAnecdote(votes)]}</p>
     </div>
   )
 }
